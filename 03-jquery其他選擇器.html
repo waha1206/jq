@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>我是一個p</p>
+
+    <div class="cd">我是第一個div</div>
+    <div class="cd">我是第二個div</div>
+    <div class="cd3">我是第三個div</div>
+
+    <h3>標題標籤</h3>
+
+    <input type="checkbox" checked="checked">
+
+    <script>
+        $(function() {
+            var $all = $('*')
+            console.dir($all)
+
+            var $dv = $('.cd') //取得所有 class = 'cd' 的標籤
+            console.dir($dv)
+
+            var dv = $dv[0] // 取得第一個選擇器
+            console.log(dv.innerHTML)
+
+            //取得 $ 對象，並且輸出文本內容
+            var $dv3 = $('.cd3')
+            console.log($dv3.text())
+
+            var $div = $('div, h3') //標籤選擇器，並集選擇器
+
+
+
+            console.log($('div.cd3'))
+
+            $("input:not(:checked)")
+
+
+            //var $cb = $('input:not(:checked)')
+            //console.dir($cb)
+
+        })
+    </script>
+</body>
+
+</html>

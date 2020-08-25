@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" id="btn" value="按鈕">
+    <script>
+        $(function() {
+            var $btn = $('#btn') // #代表id選擇器
+                // $函數可以接受一個回調函數，回調就是在頁面加載完後執行
+                // 還可以接受一個 css 選擇器 (string)，返回選擇器對應 dom 節點的 jqurey 包裝對象 --- $btn
+                // 我們一頒給jquery 對象會加上一個 $ 符號
+            console.dir($btn)
+            console.log($btn.length)
+            var btn2 = $(btn[0]) // jQuery → DOM
+            var $btn = $(btn2) // 接受一個 dom 對象，轉成 jQuery 對象$(btn)
+
+            // 轉成 jQuery 的包裝對象後，就擁有了 jQuery .fn 上的方法
+        })
+    </script>
+</body>
+
+</html>

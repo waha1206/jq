@@ -22,6 +22,10 @@
     </ul>
     <script>
         $(function() {
+            // 第一個參數，選擇器，選擇父元素下面的子元素，過濾器
+            // 第二個參數，綁定事件
+            // 第三個參數，事件執行函數
+            // 比較少用了，都被 on 取代 之後老師會說明
             $('.list').delegate('li', 'click', function(e) {
                 // dom 的方式
                 console.log(this.innerHTML, 'dom 的方式')

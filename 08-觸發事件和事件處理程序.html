@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="button" value="按鈕" id="btn">
+    </div>
+    <script>
+        $(function() {
+            $('div').click(function() {
+                console.log('我被冒泡事件打擊到了')
+            })
+
+            $('#btn').click(function(e, a, b) {
+                    console.log(e, a, b)
+                        //e.stopPropagation() //阻止冒泡事件
+                })
+                // 第一種觸發方式
+                // $('#btn').click()
+                // 第二種觸發方式，可以觸發任何的事件
+                // $('#btn').trigger('click', [5, 6])
+
+            // 事件處理函數，沒有實際觸發該事件，但是去執行該事件的處理函數
+            // 注意，不會觸發冒泡事件
+            $('#btn').triggerHandler('click', [12, 'abc'])
+
+        })
+    </script>
+</body>
+
+</html>

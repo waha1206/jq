@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <ul class="list">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <p>6</p>
+    </ul>
+    <script>
+        $(function() {
+            $('.list').delegate('li', 'click', function(e) {
+                // dom 的方式
+                console.log(this.innerHTML, 'dom 的方式')
+                    // jquery 的方式
+                console.log($(this).text(), 'jquery 的方式，沒參數 = 取得值，有參數 = 賦值')
+                console.log($(this).text('w8 s93s932k'), 'jquery 的方式，沒參數 = 取得值，有參數 = 賦值')
+                console.log($(this).text(), 'jquery 的方式，沒參數 = 取得值，有參數 = 賦值')
+            })
+        })
+    </script>
+</body>
+
+</html>

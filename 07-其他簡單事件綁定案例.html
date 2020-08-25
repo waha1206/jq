@@ -12,14 +12,26 @@
 </head>
 
 <body>
-    <input type="text" value="1">
-    <input type="text" value="2">
-    <input type="text" value="3">
-    <input type="text" value="4">
+    <div class="input-box">
+        <input type="text" value="1">
+        <input type="text" value="2">
+        <input type="text" value="3">
+        <input type="text" value="4">
+    </div>
     <script>
         $(function() {
-            $('input').focus(function(e) {
-                console.log(this.value)
+            var $inputArray = $('.input-box input')
+            console.dir($inputArray)
+
+            // 沒帶參數的話，代表就是執行該事件
+            $inputArray[2].focus()
+                // 帶一個參數，後面那個是回調函數
+            $inputArray.focus(function(e) {
+                    console.log(this.value)
+                })
+                // 帶兩個參數
+            $inputArray.blur('1234', function(e) {
+                console.log(e.data)
             })
         })
     </script>

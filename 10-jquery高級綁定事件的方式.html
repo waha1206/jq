@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按鈕 click" id="btn">
+    <input type="button" value="按鈕 mouseover" id="btn2">
+    <input type="button" value="按鈕 mouseup mousedown" id="btn3">
+    <input type="button" value="按鈕 handle" id="btn4">
+
+    <script>
+        $(function() {
+            // BMO 綁定事件有三種
+            // 第一種，綁定一種事件
+            $('#btn').bind('click', function(e) {
+                    console.log('這是 click 事件')
+                })
+                // 第二種，一次綁定兩種事件
+            $('#btn2').bind('mouseover mouseout', 'mouseover and mouseout', function(e) {
+                    console.log(e.type, '事件')
+                    console.log(e.data, '資料')
+                })
+                // 第三種，綁定事件對象 --- 少用，因為很少人知道這種用法
+            $('#btn3').bind({
+                mouseup: function(e) {
+                    console.log(e.type, '事件')
+                },
+                mousedown: function(e) {
+                    console.log(e.type, '事件')
+                }
+            })
+            $('#btn4').bind('click', btn4ClickHandle)
+                // 第二種綁定的其他寫法
+            function btn4ClickHandle(e) {
+
+                console.log('類型', e.type, '屬性長度', arguments.length, '屬性', arguments)
+            }
+        })
+    </script>
+</body>
+
+</html>

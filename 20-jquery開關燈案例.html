@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        .cls {
+            background-color: #000;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="關燈" id="btnLight">
+    <script>
+        $(function() {
+            $('#btnLight').on('click', function(e) {
+                // 按鈕點擊後，關燈變開燈，背景變成黑色，反之亦然
+                if ($('#btnLight').val() == '關燈') {
+                    //$('body').attr('class', 'cls')
+                    // 另一種設定 attr 的方法
+                    //$(document.body).addClass('cls')
+                    $('#btnLight').val('開燈')
+                } else {
+                    //$('body').removeAttr('class')
+                    // 另一種removeAttr的方法
+                    //$(document.body).removeClass('cls')
+                    $('#btnLight').val('關燈')
+                }
+                // 第三種作法，切換樣式類
+                $(document.body).toggleClass('cls')
+            })
+        })
+    </script>
+</body>
+
+</html>

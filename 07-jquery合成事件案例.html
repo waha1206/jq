@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        .box {
+            position: absolute;
+            /* 超出寬度的時候，就不顯示*/
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+        
+        .left {
+            float: left;
+            height: 200px;
+            width: 100px;
+        }
+        
+        .box .aside {
+            display: none;
+            float: left;
+            width: 100px;
+            height: 200px;
+            position: relative;
+            padding: 0;
+            margin: 0;
+        }
+        
+        p {
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="left"></div>
+        <div class="aside">
+            <p>X</p>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            $('.box').hover(function(e) {
+                $('.aside').css('display', 'block')
+            }, function(e) {
+                $('.aside').css('display', 'none')
+            })
+        })
+
+        $('p').on('click', function(e) {
+            $('.aside').css('display', 'none')
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <input type="button" value="按鈕" id="btn">
+
+    <ul class="ulBox">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+    </ul>
+    <script>
+        // on 替代 bind 綁定事件方式
+        $(function() {
+            $('#btn').on('click', function(e) {
+                console.log(e.type)
+            })
+
+            // on 替代 live 動態創建元素綁定事件方法
+            // 動態創建出一個 p
+            // 動態賦予他一個事件 --- 使用 jquery 裡的 on
+            // 加到 body 中
+
+
+            // 傳統使用 dom 的添加方法
+            var domP = document.createElement('p')
+            var domP2 = document.createElement('p')
+            domP.innerHTML = '我是動態創建的 P'
+            $(domP).on('click', function() {
+                    // 使用 jquery 裡面的 text() 方法取值
+                    console.log($(this).text())
+                })
+                // append 與 appendChild 不同的地方是， append 可以傳 domString 對象 (文字對象)
+                // 例如 append('我跟你說', domP)
+            document.body.appendChild(domP)
+            document.body.append('我跟你說', domP2)
+
+            // query 創建 構造函數的4種方式
+            // 1. $(function(){})
+            // 2. 可以接收一個字符串對象 選擇器進行選擇頁面中的元素，返回 jquery 對象  var $p = $('li')
+            var $p = $('li')
+            console.log($p)
+                // 3. 可以接收一個 dom 對象 包裝成 jquery 的對象  $(domP)
+                // 4. 可以接收一個 元素字符串 創建成jquery 包裝對象 --- $('<p>5711438</p>'')
+            var $p2 = $('<p>5711438</p>')
+            $p2.on('click', function(e) {
+                console.log($(this).html())
+            })
+
+            $('body').append($p2)
+
+            // 使用 jquery 的 on 取代 事件委託方式 delegate()
+
+            $('.ulBox').on('click', 'li', function() {
+                console.log($(this).html())
+            })
+
+
+        })
+    </script>
+</body>
+
+</html>

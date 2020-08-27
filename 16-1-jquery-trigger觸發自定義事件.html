@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>用 trigger 觸發 自定義事件，像是 ajax 拿到資料後通知元素更新內容</p>
+    <input type="text">
+    <script>
+        $(function() {
+            $('input:text').on('getData', function(e, a, b) {
+                $(this).val('tirgget觸發 getData 事件了')
+                console.log('去看看 text 的內容， 被改變了')
+                console.log(a)
+                console.log(a['leo'])
+                console.log(b)
+            })
+            $('input:text').trigger('getData', [{
+                leo: 10
+            }, 20])
+        })
+    </script>
+</body>
+
+</html>

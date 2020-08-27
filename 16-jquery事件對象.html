@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>我是一個P</p>
+
+    <input type="text" name="" id="">
+    <script>
+        $('p').on('click', function(e) {
+            console.log(e.type)
+            console.log(e)
+
+        })
+
+        $('input:text').on('keydown', function(e) {
+            // which 可以獲得，按鍵，滑鼠鍵的 數值
+            console.log(e.which)
+        })
+    </script>
+</body>
+
+</html>

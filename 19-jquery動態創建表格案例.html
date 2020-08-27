@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        div {
+            width: 500px;
+        }
+        
+        table,
+        td,
+        th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table class="list">
+            <thead>
+                <th>用戶名</th>
+                <th>MAIL</th>
+                <th>年齡</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LEO</td>
+                    <td>waha@gmail.com</td>
+                    <td>18</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        var data = [{
+            name: 'loma1',
+            email: 'waha1@gmail.com',
+            age: 18
+        }, {
+            name: 'loma2',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: 'loma3',
+            email: 'waha3@gmail.com',
+            age: 20
+        }, {
+            name: 'loma4',
+            email: 'waha4@gmail.com',
+            age: 21
+        }]
+
+        // 把上面數組遍歷拼接，然後塞到 html() 裡面
+        var htmlArray = []
+        htmlArray.push($('.list tbody').html())
+        for (var i = 0; i < data.length; i++) {
+            htmlArray.push('<tr> <td> ' + data[i].name + ' </td> <td>' + data[i].email + '</td><td>' + data[i].age + '</td></tr>')
+        }
+        $('.list tbody').html(htmlArray.join(''))
+    </script>
+</body>
+
+</html>

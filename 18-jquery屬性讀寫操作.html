@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <!--
+		這樣寫的話，寫了標籤名稱，他的值就會是 checked
+<input type="checkbox" checked name="ckb" id="ckb2">
+	 -->
+    <input type="checkbox" name="ckb" id="ckb2">
+    <p class="txt" tmd="ss">搜索</p>
+    <p class="txt" tmd="sss">搜索</p>
+    <script>
+        $(function() {
+            console.log($('.txt').attr('tmd'))
+            $('.txt').attr('tmd', 'sss')
+            console.log($('.txt').attr('tmd'))
+            $('.txt').attr('class', 'sss')
+            console.log($('.sss').attr('class'))
+            console.log($('#ckb2').attr('checked')) // 這個會顯示 undefined
+            $('#ckb2').attr('checked', 'checked')
+
+            // 對所有P屬性設定 一個 {} 對象的屬性設置
+            $('p').attr({
+                    tma: 'abc',
+                    tmb: 'ced',
+                    'xxx': 123 // 最後屬性顯示 xxx='123'  真有趣
+                })
+                // attr 的回調函數 --- 我要把所有 P 標籤 裡面的 屬性值 都給他 + 1 (index)
+                // 第四種用法： jquery 回調函數
+            $('p').attr('tmd', function(index, oldAttr) {
+                return oldAttr + index // 這邊有隱式疊代
+            })
+            console.log($('p')) // 這裡面會是一個數組
+
+            // 設置單個屬性的設置方法 --- 一般有三個 checked disabled selected
+            $('#ckb2').attr('checked', 'checked')
+                // 移除單個屬性的移除方法，當然嚕，一般屬性也可以使用這個
+            $('#ckb2').removeAttr('checked')
+
+            // 單個屬性的設置方法，建議用下面這種，boolean 類型的都推薦使用 prop
+            $('#ckb2').prop('checked', true)
+            $('#ckb2').prop('checked', false)
+
+        })
+    </script>
+</body>
+
+</html>

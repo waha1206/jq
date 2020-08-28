@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        body,
+        html,
+        div {
+            padding: 0;
+            margin: 0;
+            position: relative;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: #cdcdcd;
+            border: 1px solid #ccc;
+            position: absolute;
+        }
+        
+        .goTop {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="button" value="動畫效果" id="btnAnimate">
+    <div class="box"></div>
+    <h1>1</h1>
+    <h1>2</h1>
+    <h1>3</h1>
+    <h1>4</h1>
+    <h1>5</h1>
+    <h1>6</h1>
+    <h1>7</h1>
+    <h1>8</h1>
+    <h1>9</h1>
+    <h1>10</h1>
+    <h1>11</h1>
+    <h1>12</h1>
+    <h1>13</h1>
+    <h1>14</h1>
+    <h1>15</h1>
+    <h1>16</h1>
+    <h1>17</h1>
+    <h1>18</h1>
+    <h1>19</h1>
+    <h1>20</h1>
+
+    <div class="goTop">回到頂端</div>
+    <script>
+        $(function() {
+            $('#btnAnimate').on('click', function(e) {
+                $('.box').animate({
+                    height: 200,
+                    width: '300px',
+                    left: '+=30px',
+                    top: '-=10px',
+                    paddingLeft: '-=20'
+                }, 'fast', 'swing')
+            })
+            $('.goTop').on('click', function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 200)
+            })
+        })
+    </script>
+</body>
+
+</html>

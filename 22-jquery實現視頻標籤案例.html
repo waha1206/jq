@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .html,
+        .body,
+        .div {
+            margin: 0;
+            padding: 0;
+            /*overflow: hidden;*/
+        }
+        
+        .label-wrap {
+            width: 300px;
+            line-height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        .label-wrap .txt-lab {
+            border: none;
+            outline: none;
+            line-height: 30px;
+            width: 30px;
+        }
+        
+        .label-wrap .lb-span {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="label-wrap">
+        <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+        <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+        <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+        <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+        <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+        <span class="lb-span">JQUERYJQUERYJQUERYJQUERY</span>
+        <span class="lb-span">JQUERY</span>
+        <input type="text" class="txt-lab">
+    </div>
+    <script>
+        $(function() {
+            $('.txt-lab').on('keydown', function(e) {
+                // enter 跟 esc 判斷
+                if (e.which == 13 | e.which == 27) {
+                    if ($(this).val().length > 0) {
+                        inputToLabel()
+                    }
+                } else if (e.which == 8) {
+                    // 找到最後一個 lab 取得他的 val()
+                    // 設定文本框的 val( lab 的 text())
+                    // 刪除掉 最後一個 lab
+                    if ($(this).val().length <= 0) {
+                        var txt = $('.label-wrap span:last').text()
+                        $(this).val(txt)
+                        $('.label-wrap span:last').remove()
+                            // 取消默認行為，取消後對件刪除字符的默認行為
+                        e.preventDefault()
+                        e.stopPropagation()
+                    }
+                }
+            })
+            $('.label-wrap').on('click', function(e) {
+                $('.txt-lab').focus()
+            })
+
+            // text 失去焦點後，會讓他插入元素
+            $('.txt-lab').on('blur', function(e) {
+                if ($(this).val().length > 0) {
+                    inputToLabel()
+                }
+            })
+
+            // 刪除 label 按鈕點擊事件
+            $('.label-wrap').on('click', 'i', function() {
+                $(this).parent().remove()
+            })
+
+            function inputToLabel() {
+                var $lab = $('<span class="lb-span">' + $('.txt-lab').val() + ' <i class="fa fa-times-circle fa-lg"></i></span>')
+                $('.txt-lab').before($lab)
+                $('.txt-lab').val('')
+            }
+        })
+    </script>
+</body>
+
+</html>

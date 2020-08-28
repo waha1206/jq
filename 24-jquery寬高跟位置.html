@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 100px;
+            height: 100px;
+            border: 11px solid #ccc;
+            padding: 10px;
+            margin: 22px;
+            background-color: #c09;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <div class="box"></div>
+    <script>
+        $(function() {
+            // 內容區域 + 內邊距
+            console.log($('.box').innerHeight())
+            console.log($('.box').innerWidth())
+
+            // 計算 邊框 border + 內邊距 padding + 內容 width
+            console.log($('.box').outerHeight())
+            console.log($('.box').outerWidth())
+
+            // 計算 外邊距 margin 邊框 border + 內邊距 padding + 內容 width
+            console.log($('.box').outerHeight(true))
+            console.log($('.box').outerWidth(true))
+
+            console.log($(window).scrollTop())
+
+            $('.box').on('click', function() {
+                $(window).scrollTop(0)
+            })
+            $(document).on('mousemove', function(e) {
+                console.log(e.pageX)
+                console.log(e.pageY)
+            })
+        })
+    </script>
+</body>
+
+</html>

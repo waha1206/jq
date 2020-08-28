@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>10</p>
+    <script>
+        $(function() {
+            // 把所有的 p 標籤，各別用 <div></div> 包裹起來
+            //console.log($('p').wrap('<div></div>'))
+            // 把所有的 p 標籤，單獨用一組 <div></div> 包裹起來
+            console.log($('p').wrapAll('<div></div>'))
+                // 把標籤內部的子元素用一個標籤進行包裹
+            console.log($('p').wrapInner('<span></span>'))
+                // 把 A 替換掉 所有滿足 seleror 條件的的 B 元素
+            $('<span>12345</span>').replaceAll('p:first')
+
+            // 把 A 用 B 來進行替換 --- 最前面的是 A
+            $('p:last').replaceWith('<span>998754</span>')
+
+            // 複製一個節點，放到 body
+            $('p:first').clone(true).appendTo('body')
+        })
+    </script>
+</body>
+
+</html>

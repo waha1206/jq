@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <script>
+        $(function() {
+            $('p').css('color', 'red')
+            $('p:first').css('color', 'blue')
+            console.log($('p:last').css('color'))
+                // even 格行變色
+            $('p:even').css({
+                'background': 'yellow',
+                'font-size': '36px',
+                'color': '#000'
+            })
+
+            // 動態創建元素
+            var dynamicStr = '<p>我是動態創建的P</p>'
+            $(dynamicStr).appendTo('body')
+        })
+    </script>
+</body>
+
+</html>

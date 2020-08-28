@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        .mask {
+            position: absolute;
+            top: 0px;
+            filter: alpha(opacity=60);
+            background-color: #777;
+            z-index: 1002;
+            left: 0px;
+            opacity: 0.5;
+            -moz-opacity: 0.5;
+        }
+        
+        .box {
+            width: 1000px;
+            height: 600px;
+            border: 11px solid #ccc;
+            padding: 10px;
+            background-color: #000;
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            z-index: 1003;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="mask" class="mask"></div>
+    <div class="box"></div>
+    <input type="button" value="遮罩層顯示" id="btnShowMask">
+
+    <script>
+        $(function() {
+            $('#mask').on('click', function() {
+                $('.box').slideToggle('fast', 'linear')
+                hideMask()
+            })
+
+            $('#btnShowMask').on('click', function() {
+                $('.box').slideToggle('fast', 'linear', function() {
+                    showMask()
+                })
+            })
+
+            function showMask() {
+                $("#mask").css("height", $(document).height());
+                $("#mask").css("width", $(document).width());
+                $("#mask").show();
+            }
+            //隱藏遮罩層
+            function hideMask() {
+                $("#mask").hide();
+            }
+        })
+    </script>
+</body>
+
+</html>

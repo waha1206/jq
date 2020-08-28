@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        html,
+        body,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .box {
+            width: 1000px;
+            height: 600px;
+            border: 11px solid #ccc;
+            padding: 10px;
+            background-color: #c09;
+            display: none;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+    </style>
+
+    <body>
+
+        <input type="button" value="顯示" id="btn">
+        <input type="button" value="隱藏" id="btn2">
+        <input type="button" value="滑下" id="btnSlidDown">
+        <input type="button" value="滑上" id="btnSlidUp">
+        <input type="button" value="反轉" id="btnMenu">
+        <input type="button" value="淡入" id="btnFadeIn">
+        <input type="button" value="淡出" id="btnFadeOut">
+        <input type="button" value="設置透明度" id="btnFadeTo">
+
+        <br><br>
+        <div class="box"></div>
+
+
+        <br><br>
+
+        <script>
+            $(function() {
+                $('.box').attr('show', 'off')
+                $('#btn').on('click', function() {
+                    console.log('hi')
+                    $('#btn').css('z-index', 3000)
+                        // slow 600 ms
+                        // normal 400 ms
+                        //  fast 200 ms
+                    $('.box').show('slow', 'swing', function() {
+                        $(this).css('z-index', 2999)
+                        console.log('我是 callback')
+                        console.log($(this).css('zIndex'))
+                        console.log($('#btn').css('zIndex'))
+                    })
+
+                })
+                $('#btn2').on('click', function() {
+                    $('.box').hide('slow', 'swing')
+                })
+                $('#btnSlidDown').on('click', function() {
+                    $('.box').slideDown(200, 'linear')
+                })
+                $('#btnSlidUp').on('click', function() {
+                    $('.box').slideUp(200, 'swing')
+                })
+                $('#btnMenu').on('click', function() {
+                    $('.box').slideToggle('fast', 'linear')
+                })
+                $('#btnFadeIn').on('click', function() {
+                    $('.box').fadeIn('fast', 'linear')
+                })
+                $('#btnFadeOut').on('click', function() {
+                    $('.box').fadeOut('fast', 'linear')
+                })
+                $('#btnFadeTo').on('click', function() {
+                    // 0= 完全透明
+                    $('.box').fadeTo(2000, 0.5)
+                })
+            })
+        </script>
+    </body>
+
+</html>

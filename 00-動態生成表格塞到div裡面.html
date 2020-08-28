@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        .html,
+        .body,
+        .div {
+            margin: 0;
+            padding: 0;
+            /*overflow: hidden;*/
+        }
+        
+        .label-wrap {
+            width: 600px;
+            line-height: 40px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        
+        .label-wrap .txt-lab {
+            border: none;
+            outline: none;
+            line-height: 30px;
+            width: 30px;
+        }
+        
+        .label-wrap .lb-span {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        
+        .lBox {
+            width: 800px;
+        }
+        
+        table,
+        td,
+        th {
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        th,
+        td {
+            padding: 15px;
+        }
+        
+        .lBox,
+        .rBox {
+            float: left;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="lBox">
+        <table class="list">
+            <thead>
+                <th>原料名稱</th>
+                <th>其他資訊(一)</th>
+                <th>其他資訊(二)</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LEO</td>
+                    <td>waha@gmail.com</td>
+                    <td>18</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="rBox">
+        <div class="label-wrap">
+            <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+            <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+            <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+            <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+            <span class="lb-span">JQUERY <i class="fa fa-times-circle fa-lg"></i></span></span>
+            <span class="lb-span">JQUERYJQUERYJQUERYJQUERY</span>
+            <span class="lb-span">JQUERY</span>
+        </div>
+    </div>
+
+    <script>
+        var data = [{
+            name: '5吋YKK拉鍊(一般頭，3號齒，多色可選)約12.7公分',
+            email: 'waha1@gmail.com',
+            age: 18
+        }, {
+            name: '(杯墊)加耳朵的布：高4X寬4公分自訂耳朵(1對)(仿帆布6安高密)',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: '1.7公分白色粗繩86公分2條(綁起來約60)',
+            email: 'waha3@gmail.com',
+            age: 20
+        }, {
+            name: '青古色洞徑1.92公分雞眼4組',
+            email: 'waha4@gmail.com',
+            age: 21
+        }]
+
+        // 把上面數組遍歷拼接，然後塞到 html() 裡面
+        var htmlArray = []
+        htmlArray.push($('.list tbody').html())
+        for (var i = 0; i < data.length; i++) {
+            htmlArray.push('<tr> <td> ' + data[i].name + ' </td> <td>' + data[i].email + '</td><td>' + data[i].age + '</td></tr>')
+        }
+        $('.list tbody').html(htmlArray.join(''))
+
+        $('tbody tr').on('click', function() {
+            console.log($(this).css('background'))
+            $(this).css('background', '#ccc')
+            inputToLabel(this)
+        })
+
+        function inputToLabel(that) {
+            var $lab = $('<span class="lb-span">' + $(that).children('td')[0].innerText + ' <i class="fa fa-times-circle fa-lg"></i></span>')
+            var getStr = $(that).children('td')[0].innerText
+            console.log(getStr)
+            var ifFound = $('.label-wrap span').text().search(getStr)
+            console.log(ifFound)
+            if (ifFound < 0) {
+                $('.label-wrap span:first').before($lab)
+            }
+
+
+
+        }
+    </script>
+</body>
+
+</html>

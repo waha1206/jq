@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        html,
+        body,
+        ul,
+        ol,
+        li,
+        div {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+        }
+        
+        .ac {
+            width: 200px;
+            border: 1px solid #ccc;
+        }
+        
+        .ac .ac-item .ac-item-hd {
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #efefef;
+            border: 1px solid #afafaf;
+            cursor: pointer;
+        }
+        
+        .ac .ac-item .ac-item-hd:hover {
+            background-color: #aaa;
+        }
+        
+        .ac .ac-item .ac-item-bd {
+            height: 200px;
+            display: none;
+        }
+        /*
+        .ac .on .ac-item-bd {
+            display: block;
+        }*/
+    </style>
+</head>
+
+<body>
+    <ul class="ac">
+        <li class="ac-item on">
+            <div class="ac-item-hd">業務部門</div>
+            <div class="ac-item-bd">
+                <a href="#">報價單</a>
+                <a href="#">客戶訂單總覽</a>
+            </div>
+        </li>
+        <li class="ac-item">
+            <div class="ac-item-hd">生產部門</div>
+            <div class="ac-item-bd">身體2</div>
+        </li>
+        <li class="ac-item">
+            <div class="ac-item-hd">輸出部門</div>
+            <div class="ac-item-bd">身體3</div>
+        </li>
+        <li class="ac-item">
+            <div class="ac-item-hd">頭部4</div>
+            <div class="ac-item-bd">身體4</div>
+        </li>
+        <ol>sibling('li') 會排除我</ol>
+    </ul>
+
+    <script>
+        $(function() {
+            $('.ac-item-hd').on('click', function(e) {
+                console.log('click')
+                $(this).parent().addClass('on')
+                $(this).siblings('.ac-item-bd').slideDown(300)
+                $(this).parent().siblings('li').removeClass('on').find('.ac-item-bd').slideUp(300)
+            })
+            $('.ac-item-hd')[0].click()
+        })
+    </script>
+
+
+</body>
+
+</html>

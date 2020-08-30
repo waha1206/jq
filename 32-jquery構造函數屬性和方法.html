@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <script>
+        // jquery 的三種用法
+        // 字符串選擇對象  $('.box')
+        // 把 dom 轉換成 jquery 包裝對象  $(domObject)
+        // 動態創建對象 $('<div>D/div>')
+
+        // each 方法
+        jQuery.each([1, 2, 3, 4, 'a', 'b'], function(index, data) {
+            console.log('index:' + index, 'data:' + data)
+        })
+
+        $(function() {
+            $('li').each(function(index, ele) {
+                console.log(index, ele)
+            })
+            var newArr = jQuery.map(['a', 'b', 'c', 'd', 'e'], function(value, index) {
+                return value + index
+            })
+            console.log('jQury map :', newArr)
+
+            // 第三個參數默認為 false 如果改成 true 返回值就會是 != 設定的判斷
+            newArr = $.grep([2, 1, 0], function(value, index) {
+                console.log(value, index)
+                return value > 0
+            }, false)
+            console.log('grap:', newArr)
+                // jQuery extend 這個是淺拷貝，如果他後面有其他物件，只會拷貝指標
+                // 如果被指向的物件內容改了，這個拷貝的內容也會變
+                // 如果要完全複製一個物件，然後可以獨立運作，不會影響到其他物件，就需要深拷貝
+                // 深拷貝只需要多增加一個參數 [deep] 為 true
+                // jQuery.extend([deep=true], 要被創造出來的新物件, 要被copy的物件一, 要被copy的物件二)
+            var p1 = {
+                a: 123,
+                b: 'abc'
+            }
+            var target = {
+                name: 'loama'
+            }
+            var obj1 = {
+                age: 18,
+                cellphone: '0918700586',
+                mail: 'waha1206@gamil.com',
+                p: p1
+            }
+
+
+            console.log('拓展前的 target:', target)
+            var newObj = jQuery.extend(target, obj1)
+            console.log('拓展後的 target:', target)
+
+            console.log('拓展後會傳回一個新物件 newObj 當然 target 也被拓展了', newObj)
+                // 這個時候，比對一下兩個物件 newObj 跟 target 會是完全相等
+            console.log(newObj === target)
+            console.log('obj1 沒有任何變動', obj1)
+            console.log(newObj.p.a)
+            p1.a = 456
+            console.log(newObj.p.a) // 淺拷貝的話，當原始物件 p1.a 的值被改了的話，那麼 拷貝後的物件，也會被影響
+            console.log(target.p.a) // 如果要完全獨立出來，就需要深拷貝 jQuery.extend(true, target, obj1)
+        })
+
+        // map 方法
+
+        var arr = ['a', 'b', 'c', 'd']
+        var newArr = arr.map(function(value, index) {
+            return value + index
+        })
+        console.log(newArr)
+    </script>
+</body>
+
+</html>

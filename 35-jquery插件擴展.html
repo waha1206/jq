@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <div class="box">box</div>
+    <script>
+        // jQuery 擴展插件：
+        //第一種：擴展 jQuery 原型對象方式
+        (function($) {
+            // 給 jQuery 原型擴展方法，可以在 jQuery 的包裝對象上使用
+            $.fn.logText = function() {
+                console.log(this.text(), '超強的擴展功能！')
+            }
+        })(jQuery)
+
+        $(function() {
+            $('.box').logText()
+        })
+
+        // 第二種：擴展 jQuery 構造函數上面的插件 (方法)
+        // 低級的方法如下
+        // jQuery.logTime = function() {
+        // console.log(Date.now().toString());
+
+        // 藝術的寫法
+        $.extend({
+            logTime: function() {
+                console.log(new Date())
+            }
+        })
+
+        jQuery.logTime()
+    </script>
+</body>
+
+</html>

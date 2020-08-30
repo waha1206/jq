@@ -1,0 +1,93 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery contains 小技巧</title>
+    <style>
+        .btns {
+            margin-top: 12px;
+        }
+        
+        .btns button {
+            margin: 3px;
+        }
+        
+        .highlight {
+            color: red;
+        }
+        
+        p {
+            margin: 0;
+            padding: 3px;
+        }
+        
+        p span {
+            margin-right: 3px;
+            font-size: 14pt;
+            font-weight: bold;
+            color: rebeccapurple;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <span>同意</span>
+        <span>不同意</span> (標準)
+    </p>
+    <p>
+        <span>
+      同意
+    </span>
+        <span>
+      不同意
+    </span> (HTML換行縮排)
+    </p>
+    <p>
+        <span><small>同意</small></span>
+        <span><small>不同意</small></span> (包入&lt;small&gt;)
+    </p>
+
+    <div class="btns">
+        <button id='b1'>:contains('不同意')</button>
+        <button id='b2'>:contains('同意')</button><br />
+        <button id='b3'>等於"同意"</button>
+        <button id='b4'>等於"同意"(忽略空白/換行)</button><br />
+        <button id='b5'>等於"同意"(純文字，無子元素)</button>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        function highlight(elems) {
+            elems.addClass("highlight");
+            setTimeout(function() {
+                elems.removeClass("highlight");
+            }, 1000);
+        }
+        $("#b1").click(function() {
+            highlight($("span:contains('不同意')"));
+        });
+        $("#b2").click(function() {
+            highlight($("span:contains('同意')"));
+        });
+        $("#b3").click(function() {
+            var e = $("span:contains('同意')").filter(function() {
+                return $(this).text() === "同意";
+            });
+            highlight(e);
+        });
+        $("#b4").click(function() {
+            var e = $("span:contains('同意')").filter(function() {
+                return $.trim($(this).text()) === "同意";
+            });
+            highlight(e);
+        });
+        $("#b5").click(function() {
+            var e = $("span:contains('同意')").filter(function() {
+                return this.innerHTML == "同意";
+            });
+            highlight(e);
+        });
+    </script>
+</body>
+
+</html>

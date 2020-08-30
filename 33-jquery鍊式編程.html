@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <h1>這個會有特效喔！酷～</h1>
+    <script>
+        $(function() {
+            $('h1').text('這個會有特效喔！酷～這個會有特效喔！酷～').css('display', 'none').slideDown(1000)
+        })
+
+        // 鍊式編程的原理
+
+        var leo = {
+            eat: function() {
+                console.log('Leo吃東西')
+                return this
+            },
+            play: function() {
+                console.log('Leo去玩樂')
+                return this
+            },
+            sleep: function() {
+                console.log('Leo睡覺去')
+                return this
+            }
+        }
+
+        leo.eat().sleep().play()
+    </script>
+</body>
+
+</html>

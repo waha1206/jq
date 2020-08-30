@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        body,
+        html,
+        div,
+        ul,
+        li {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        ol {
+            list-style: none;
+        }
+        
+        .list li {
+            float: left;
+            font-size: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="list">
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+        <li>☆</li>
+    </ul>
+    <script>
+        $(function() {
+
+            $('.list li').hover(function(e) {
+                    // 欲取得效果，當屬標移入時，之前的五星和自己都變成實心的五角星
+                    $(this).text('★').prevAll().text('★')
+                }, function(e) {
+                    // 鼠標離開的時候，自己跟後面的都變成空心的五角星
+                    $(this).text('☆').nextAll().text('☆')
+                })
+                // 點擊的時候，自己跟前面的都變成實心的五角星，後面都變成空星的
+            $('.list li').on('click', function(e) {
+                    $(this).addClass('cur').siblings().removeClass('cur')
+                })
+                // mouseout 是冒泡的 mouseleave 是不冒泡的
+            $('.list li').on('mouseleave', function(e) {
+                // 滑鼠移出的時候，自己跟前面的都變成實心的五角星，後面的都變成空心的
+                $('.list li.cur').text('★').prevAll().text('★').end().nextAll().text('☆')
+            })
+        })
+    </script>
+</body>
+
+</html>

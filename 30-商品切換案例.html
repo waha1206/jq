@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表切換案例</title>
+    <script src='./node_modules/jquery/dist/jquery.js'></script>
+    <style>
+        html,
+        body,
+        div,
+        li,
+        ul {
+            margin: 0;
+            padding: 0;
+        }
+        
+        ul,
+        li {
+            list-style: none;
+        }
+        
+        .tb-wrap {
+            width: 606px;
+        }
+        /* 讓父盒子擁有包裹性，overfloat:hidden*/
+        
+        .tb-wrap .tab-hd {
+            overflow: hidden;
+        }
+        
+        .tb-wrap .tab-hd .tab-hd-item {
+            float: left;
+            width: 200px;
+            height: 30;
+            line-height: 30px;
+            background-color: #ccc;
+            border: 1px solid #aaa;
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .tb-wrap .tab-hd .tab-hd-item:hover {
+            background-color: #afafaf;
+        }
+        
+        .tb-wrap .tab-bd .tab-bd-item {
+            width: 606px;
+            display: none;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        .tb-wrap .tab-bd .on {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tb-wrap">
+
+        <ul class="tab-hd">
+            <li class="tab-hd-item">商品1</li>
+            <li class="tab-hd-item">商品2</li>
+            <li class="tab-hd-item">商品3</li>
+        </ul>
+
+        <ul class="tab-bd">
+            <li class="tab-bd-item on">
+                <img src="./img/1.png" alt=""></li>
+            <li class="tab-bd-item">
+                <img src="./img/2.png" alt=""></li>
+            <li class="tab-bd-item">
+                <img src="./img/3.png" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        $(function() {
+            $('.tab-hd-item').on('mouseenter', function() {
+                //拿到當前鼠標移入的hd部分li的索引值
+                var index = $('.tab-hd-item').index(this)
+                    // 先取得 dom 元素
+                var domLiObj = $('.tab-bd li').get(index)
+                $(domLiObj).addClass('on').siblings().removeClass('on')
+            })
+        })
+    </script>
+</body>
+
+</html>

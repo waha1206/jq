@@ -105,6 +105,26 @@
             email: 'waha2@gmail.com',
             age: 19
         }, {
+            name: '9吋YKK金屬拉鍊(燈泡頭，5號金齒，多色可選)約23公分',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: '8吋YKK金屬拉鍊(燈泡頭，5號銀齒，多色可選)約20.3公分',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: '9吋YKK金屬拉鍊(燈泡頭，5號銀齒，多色可選)約25.35公分',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: '包裝：紙盒+包膜(寬13.2X高14.2X厚2公分)+薰衣草+粗鹽',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
+            name: '配件：吊飾配件-小中國結-紅色-黃色+小流蘇-紅色 黃色',
+            email: 'waha2@gmail.com',
+            age: 19
+        }, {
             name: '1.7公分白色粗繩86公分2條(綁起來約60)',
             email: 'waha3@gmail.com',
             age: 20
@@ -123,23 +143,31 @@
         $('.list tbody').html(htmlArray.join(''))
 
         $('tbody tr').on('click', function() {
-            console.log($(this).css('background'))
+            //console.log($(this).css('background'))
             $(this).css('background', '#ccc')
             inputToLabel(this)
         })
 
         function inputToLabel(that) {
+            // leb 是要加入的 元素  --- 使用字串 轉換成為 jQuery 的建構函數
             var $lab = $('<span class="lb-span">' + $(that).children('td')[0].innerText + ' <i class="fa fa-times-circle fa-lg"></i></span>')
+                // getStr 是 要加入的元素，他的原料名稱，這邊取出來是因為要判斷有沒有被加入了
             var getStr = $(that).children('td')[0].innerText
-            console.log(getStr)
-            var ifFound = $('.label-wrap span').text().search(getStr)
-            console.log(ifFound)
-            if (ifFound < 0) {
+
+            if ($('.label-wrap span').text().indexOf(getStr) < 0) {
+                $lab.attr('material', getStr)
                 $('.label-wrap span:first').before($lab)
+            } else {
+                // 變例所有在.label-wrap span 中的 span 標籤 如果他的新增屬性 material 有 符合的原料名稱，就移除
+                $('.label-wrap span').each(function(index, ele) {
+                    console.log(ele)
+                    if ($(ele).attr('material') === getStr) {
+                        console.log('找到啦！')
+                        $(ele.remove())
+                    }
+                    $(that).css('background', '')
+                })
             }
-
-
-
         }
     </script>
 </body>
